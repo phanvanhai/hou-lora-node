@@ -1,0 +1,9 @@
+# Huong dan
+
+- Truoc khi build, can cai dat 2 thong so trong file **Config.h**:
+  - Id cua thiet bi (dang hexa, 6 byte): `#define DEV_ID 0xAABBCCDDEE01`
+  - Chon loai thiet bi: 
+    - Neu la Relay: `#define DEV_TYPE RELAY_DEV_TYPE`
+    - Neu la Sensor: `#define DEV_TYPE SENSOR_DEV_TYPE`
+
+- Cac thong so khac cung nam o trong file **Config.h**

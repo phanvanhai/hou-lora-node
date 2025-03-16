@@ -1,0 +1,20 @@
+{
+	"folders": [
+		{
+			"name": "lora-wifi-gateway",
+			"path": "../../lora-wifi-gateway"
+		}
+	],
+	"settings": {
+		"files.associations": {
+			"*.sqlbook": "sql",
+			"*.ndjson": "jsonl",
+			"*.dbclient-js": "javascript",
+			"array": "cpp",
+			"string": "cpp",
+			"string_view": "cpp",
+			"limits": "cpp",
+			"type_traits": "cpp"
+		}
+	}
+}
