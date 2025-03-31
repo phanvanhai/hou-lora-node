@@ -4,14 +4,14 @@
 #include <Arduino.h>
 
 // ================ Dev Address ==================
-#define DEV_ID 0xAABBCCDDEE03
+#define DEV_ID 0xAABBCCDDEE01
 
 
 // ================ Dev Type ==================
 #define SENSOR_DEV_TYPE 0
 #define RELAY_DEV_TYPE 1
 
-#define DEV_TYPE SENSOR_DEV_TYPE
+#define DEV_TYPE RELAY_DEV_TYPE
 
 
 // ================ Interval for reporting sensor data ==================
@@ -22,6 +22,11 @@
 #define LORA_RX_PIN 3
 
 // ================ List CMD ==================
+typedef enum {
+    TX_DIR,
+    RX_DIR
+} DataDirection_t;
+
 typedef enum
 {
     TemperatureReport = 0x11,
@@ -39,6 +44,6 @@ typedef enum
 } Cmd_t;
 
 void Config_Init();
-int8_t Config_GetSizeByCmd(uint8_t cmd);
+int8_t Config_GetSizeByCmd(uint8_t cmd, DataDirection_t dir);
 
 #endif

@@ -37,11 +37,14 @@ Sensor::~Sensor()
 
 void Sensor::Loop()
 {
-    // Khong xu ly nhan Frame
+    // Khong xu ly Frame nhan
+    // Frame_t frame;
+    // Lora_Receive(&frame);
 
     // Report
     if (REPORT_INTERVAL_MS && (millis() - lastReportTimeMs >= REPORT_INTERVAL_MS))
     {
+        Serial.print("report data:");
         lastReportTimeMs = millis();
         read();
         Lora_Send(genReportFrame());
@@ -65,19 +68,19 @@ Frame_t Sensor::genReportFrame()
     frame.commandSize = 4;
 
     frame.commands[0].cmd = TemperatureReport;
-    frame.commands[0].dataSize = (uint8_t)(Config_GetSizeByCmd(TemperatureReport));
+    frame.commands[0].dataSize = (uint8_t)(Config_GetSizeByCmd(TemperatureReport, TX_DIR));
     frame.commands[0].data[0] = temperature;
 
     frame.commands[1].cmd = HumidityReport;
-    frame.commands[1].dataSize = (uint8_t)(Config_GetSizeByCmd(HumidityReport));
+    frame.commands[1].dataSize = (uint8_t)(Config_GetSizeByCmd(HumidityReport, TX_DIR));
     frame.commands[1].data[0] = humidity;
 
     frame.commands[2].cmd = SoilReport;
-    frame.commands[2].dataSize = (uint8_t)(Config_GetSizeByCmd(SoilReport));
-    frame.commands[2].data[0] = lux;
+    frame.commands[2].dataSize = (uint8_t)(Config_GetSizeByCmd(SoilReport, TX_DIR));
+    frame.commands[2].data[0] = soil;
 
     frame.commands[3].cmd = LuxReport;
-    frame.commands[3].dataSize = (uint8_t)(Config_GetSizeByCmd(LuxReport));
+    frame.commands[3].dataSize = (uint8_t)(Config_GetSizeByCmd(LuxReport, TX_DIR));
     frame.commands[3].data[0] = (lux >> 8) & 0xFF;
     frame.commands[3].data[1] = lux & 0xFF;
 
